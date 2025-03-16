@@ -94,21 +94,28 @@ function SpotlightTitle() {
   }, []);
 
   return (
-    <h1
-      ref={titleRef}
-      className="text-4xl font-bold tracking-tight sm:text-6xl relative select-none"
-      style={{
-        color: "#92400E", // amber-800 som mörkare basfärg för mer kontrast
-        WebkitTextStroke: "1px #92400E",
-        backgroundImage: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgb(254, 243, 199) 0%, rgb(252, 211, 77) 25%, rgb(245, 158, 11) 50%, rgb(146, 64, 14) 100%)`,
-        WebkitBackgroundClip: "text",
-        backgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        textShadow: "0 0 20px rgba(245, 158, 11, 0.3)", // Lägg till en subtil glöd
-      }}
-    >
-      Ljusdesign som skapar stämning
-    </h1>
+    <div className="relative pb-4">
+      {/* Baslager för texten */}
+      <h1 className="text-4xl font-bold tracking-tight sm:text-6xl text-amber-700 absolute inset-0">
+        Ljusdesign som skapar stämning
+      </h1>
+
+      {/* Spotlight-effekt lagret */}
+      <h1
+        ref={titleRef}
+        className="text-4xl font-bold tracking-tight sm:text-6xl relative"
+        style={{
+          backgroundImage: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgb(255, 250, 232) 0%, rgb(254, 243, 199) 15%, rgb(252, 211, 77) 25%, rgb(245, 158, 11) 50%, rgb(146, 64, 14) 100%)`,
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          filter: "drop-shadow(0 0 2px rgba(245, 158, 11, 0.3))",
+          paddingBottom: "0.1em",
+        }}
+      >
+        Ljusdesign som skapar stämning
+      </h1>
+    </div>
   );
 }
 
