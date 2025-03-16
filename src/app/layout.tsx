@@ -15,11 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sv">
+    <html lang="en">
       <body className={inter.className}>
-        <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
-          {children}
-        </div>
+        <div className="min-h-screen text-white">{children}</div>
       </body>
     </html>
   );
