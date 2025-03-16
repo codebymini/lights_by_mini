@@ -6,6 +6,7 @@ const nextConfig = {
     domains: ['localhost'],
     unoptimized: true,
   },
+  output: 'standalone',
 }
 
 export default nextConfig 

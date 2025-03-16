@@ -1,0 +1,12 @@
+.git
+.gitignore
+.next
+.env
+.env.*
+node_modules
+README.md
+.dockerignore
+Dockerfile
+*.log
+.history
+lights_by_mini_old 
