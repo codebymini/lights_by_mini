@@ -9,9 +9,9 @@ RUN corepack enable && corepack prepare pnpm@8.9.0 --activate
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies with production flag and limited concurrency
+# Install all dependencies (including dev dependencies)
 ENV NODE_OPTIONS="--max_old_space_size=1024"
-RUN pnpm install --frozen-lockfile --prod --network-timeout 100000 --network-concurrency 1
+RUN pnpm install --fetch-timeout=100000
 
 # Stage 2: Builder
 FROM node:18-alpine AS builder
@@ -22,8 +22,8 @@ RUN corepack enable && corepack prepare pnpm@8.9.0 --activate
 
 # Set build-time variables and limits
 ENV NODE_OPTIONS="--max_old_space_size=1024"
-ENV NEXT_TELEMETRY_DISABLED 1
-ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -35,8 +35,8 @@ RUN pnpm build
 FROM node:18-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_OPTIONS="--max_old_space_size=512"
 
 RUN addgroup --system --gid 1001 nodejs && \
@@ -48,12 +48,13 @@ RUN addgroup --system --gid 1001 nodejs && \
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/captain-definition ./captain-definition
 
 USER nextjs
 
 # Set environment variables for runtime
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 EXPOSE 3000
 
