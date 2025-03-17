@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 
-const quicksand = Quicksand({
+const sourceCodePro = Source_Code_Pro({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={quicksand.className}>
+      <body className={sourceCodePro.className}>
         <div className="min-h-screen text-white">{children}</div>
       </body>
     </html>
