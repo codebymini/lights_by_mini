@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import * as React from "react";
 import Navigation from "@/components/Navigation";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline";
 

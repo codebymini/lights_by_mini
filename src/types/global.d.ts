@@ -1,7 +1,7 @@
 import React from 'react'
 
 declare module '@heroicons/react/*' {
-  const content: any
+  const content: React.FC<React.SVGProps<SVGSVGElement>>
   export const LightBulbIcon: React.FC<React.SVGProps<SVGSVGElement>>
   export const PresentationChartLineIcon: React.FC<React.SVGProps<SVGSVGElement>>
   export const WrenchScrewdriverIcon: React.FC<React.SVGProps<SVGSVGElement>>
@@ -16,7 +16,22 @@ declare module '@heroicons/react/*' {
 }
 
 declare module 'framer-motion' {
-  export const motion: any
+  export interface MotionProps extends React.HTMLAttributes<HTMLElement> {
+    initial?: Record<string, unknown>
+    animate?: Record<string, unknown>
+    exit?: Record<string, unknown>
+    transition?: Record<string, unknown>
+    variants?: Record<string, unknown>
+    whileHover?: Record<string, unknown>
+    whileTap?: Record<string, unknown>
+  }
+  
+  export const motion: {
+    [K in keyof JSX.IntrinsicElements]: React.ForwardRefExoticComponent<
+      MotionProps & JSX.IntrinsicElements[K]
+    >
+  }
+  
   export interface AnimatePresenceProps {
     children: React.ReactNode
     mode?: 'sync' | 'popLayout' | 'wait'

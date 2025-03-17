@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import * as React from "react";
 import Navigation from "@/components/Navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -88,7 +88,7 @@ const pastProjects = [
   { name: "Sune, Göta Lejon", role: "Belysningsmästare, Videotekniker" },
 ];
 
-export default function Portfolio() {
+export default function Projects() {
   return (
     <main>
       <Navigation />

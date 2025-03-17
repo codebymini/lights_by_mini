@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 interface LogoProps {
   className?: string;
@@ -12,7 +12,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12 w-auto" }) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Gradient definitions */}
+      {/* Gradient and filter definitions */}
       <defs>
         <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" style={{ stopColor: "#FF6B6B", stopOpacity: 1 }} />
@@ -38,23 +38,29 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12 w-auto" }) => {
         <clipPath id="cut">
           <path d="M0 0 L240 0 L240 130 L220 130 L20 130 L0 130 Z" />
         </clipPath>
+        <filter id="shadow-sm">
+          <feDropShadow dx="0" dy="1" stdDeviation="1" floodOpacity="0.15" />
+        </filter>
+        <filter id="shadow-lg">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" floodOpacity="0.25" />
+        </filter>
       </defs>
 
       <g clipPath="url(#cut)">
         {/* Light beam triangles */}
-        <g className="opacity-25">
+        <g opacity="0.25">
           {/* Left triangle beams */}
           <path
             d="M35 140 L70 35 L105 140 Z"
             fill="url(#gradient1)"
-            className="drop-shadow-sm"
+            filter="url(#shadow-sm)"
           />
 
           {/* Right triangle beams */}
           <path
             d="M135 140 L170 35 L205 140 Z"
             fill="url(#gradient3)"
-            className="drop-shadow-sm"
+            filter="url(#shadow-sm)"
           />
         </g>
 
@@ -64,7 +70,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12 w-auto" }) => {
           fill="none"
           stroke="url(#gradient1)"
           strokeWidth="24"
-          className="drop-shadow-lg"
+          filter="url(#shadow-lg)"
         />
 
         {/* Last segment */}
@@ -73,7 +79,7 @@ const Logo: React.FC<LogoProps> = ({ className = "h-12 w-auto" }) => {
           fill="none"
           stroke="url(#gradient3)"
           strokeWidth="24"
-          className="drop-shadow-lg"
+          filter="url(#shadow-lg)"
         />
       </g>
     </svg>
