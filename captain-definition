@@ -1,8 +1,13 @@
 {
-  "schemaVersion": 2,
-  "dockerfilePath": "./Dockerfile",
-  "containerHttpPort": 3000,
-  "resources": {
-    "memoryBytes": 536870912
-  }
-} 
+    "schemaVersion": 2,
+    "dockerfilePath": "./Dockerfile",
+    "containerHttpPort": 3000,
+    "resources": {
+        "memoryBytes": 1073741824
+    },
+    "caproverOneClickApp": {
+        "containerHttpPort": "3000",
+        "notExposeAsWebApp": false,
+        "websocketSupport": true
+    }
+}
