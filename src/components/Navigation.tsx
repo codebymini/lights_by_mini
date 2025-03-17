@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Logo from "./Logo";
 
 const navigation = [
   { name: "Hem", href: "/" },
@@ -18,10 +19,14 @@ export default function Navigation() {
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 justify-between">
+            <div className="flex h-20 justify-between">
               <div className="flex">
-                <Link href="/" className="flex flex-shrink-0 items-center">
-                  <span className="text-2xl font-bold text-amber-500">
+                <Link
+                  href="/"
+                  className="flex flex-shrink-0 items-center gap-3"
+                >
+                  <Logo className="h-12 w-auto" />
+                  <span className="text-2xl font-bold bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">
                     Lights By Mini
                   </span>
                 </Link>
@@ -31,7 +36,7 @@ export default function Navigation() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-amber-500"
+                    className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-300 hover:text-amber-500 transition-colors duration-200"
                   >
                     {item.name}
                   </Link>
@@ -57,7 +62,7 @@ export default function Navigation() {
                   key={item.name}
                   as="a"
                   href={item.href}
-                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-amber-500 hover:bg-gray-700 hover:text-white"
+                  className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-300 hover:border-amber-500 hover:bg-gray-700 hover:text-white transition-all duration-200"
                 >
                   {item.name}
                 </Disclosure.Button>
